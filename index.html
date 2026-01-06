@@ -107,7 +107,7 @@
     <h2>Agenda tu cita</h2>
     <p>Cliente nuevo</p><br>
 
-    <!-- PASO 1 -->
+    
     <form id="step1">
       <label>Servicio</label>
       <select required>
@@ -125,10 +125,54 @@
         <option>Ana</option>
       </select>
 
+      <div class="form-group">
+      <label>Nombre de la mascota</label>
+      <input type="text" required placeholder="Ej. Max">
+    </div>
+
+    <div class="form-group">
+      <label>Nombre del cliente</label>
+      <input type="text" required placeholder="Ej. Juan Pérez">
+    </div>
+
+    <div class="form-group">
+      <label>Raza</label>
+      <select required>
+        <option value="">Seleccione una raza</option>
+        <option>Labrador Retriever</option>
+        <option>Pastor Alemán</option>
+        <option>Golden Retriever</option>
+        <option>Bulldog</option>
+        <option>Poodle</option>
+        <option>Chihuahua</option>
+        <option>Husky Siberiano</option>
+        <option>Pug</option>
+        <option>Beagle</option>
+        <option>Rottweiler</option>
+        <option>Yorkshire Terrier</option>
+        <option>Dálmata</option>
+        <option>Shih Tzu</option>
+        <option>Mestizo</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Tipo de servicio</label>
+      <select required>
+        <option value="">Seleccione un servicio</option>
+        <option>Baño</option>
+        <option>Corte de pelo</option>
+        <option>Baño + Corte</option>
+        <option>Baño medicado</option>
+        <option>Limpieza dental</option>
+        <option>Corte de uñas</option>
+      </select>
+    </div>
+
       <button class="btn">Siguiente</button>
     </form>
 
-    <!-- PASO 2 -->
+    
     <form id="step2" style="display:none">
       <label>Fecha</label>
       <input type="date" required>
@@ -147,10 +191,27 @@
       <button class="btn">Confirmar por WhatsApp</button>
     </form>
   </div>
+</section> 
+
+<!-- Carrusel -->
+<section class="carousel">
+  <h2>Nuestro trabajo 🐾</h2>
+  <div class="carousel-container">
+    <button class="prev">&#10094;</button>
+
+    <div class="carousel-track">
+      <img src="assets/img/servicio1.jpg">
+      <img src="assets/img/servicio2.jpg">
+      <img src="assets/img/groomer.jpg">
+    </div>
+
+    <button class="next">&#10095;</button>
+  </div>
 </section>
 
+
 <footer>
-  © 2026 GroomerSearch
+  © 2026 Serchy Groomer
 </footer>
 
 <script>
