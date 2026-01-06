@@ -1,4 +1,4 @@
-export const WHATSAPP_NUMBER = '5215518958807';
+export const WHATSAPP_NUMBER = '5215541766524';
 
 export const TIME_SLOTS = [
   '10:00 AM',
