@@ -1,0 +1,15 @@
+:root {
+    --primary: #c9a24d;
+    --primary-dark: #b8923f;
+    --dark: #111;
+    --dark-soft: #1c1c1c;
+    --light: #f5f5f5;
+    --gray: #777;
+    --white: #ffffff;
+  
+    --radius: 10px;
+    --transition: 0.3s ease;
+  
+    --font: 'Poppins', sans-serif;
+  }
+  

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin | GroomerSearch</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="module" src="js/admin.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #fff;
+      padding: 40px;
+    }
+
+    h1 { margin-bottom: 10px; }
+
+    .box {
+      max-width: 400px;
+      background: #1c1c1c;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    label { display:block; margin-top:15px; }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: none;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px;
+      width: 100%;
+      background: #c9a24d;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    ul { margin-top: 20px; padding-left: 20px; }
+  </style>
+</head>
+<body>
+
+<h1>Panel Admin</h1>
+<p>Bloquear horarios manualmente</p>
+
+<div class="box">
+  <label>Fecha</label>
+  <input type="date" id="date">
+
+  <label>Horario</label>
+  <select id="time">
+    <option>10:00 AM</option>
+    <option>11:00 AM</option>
+    <option>12:00 PM</option>
+    <option>1:00 PM</option>
+    <option>3:00 PM</option>
+    <option>4:00 PM</option>
+  </select>
+
+  <button onclick="block()">Bloquear horario</button>
+
+  <ul id="list"></ul>
+</div>
+
+<script>
+  const list = document.getElementById('list');
+  const storageKey = 'bookedSlots';
+  const data = JSON.parse(localStorage.getItem(storageKey)) || {};
+
+  function block() {
+    const date = document.getElementById('date').value;
+    const time = document.getElementById('time').value;
+    if(!date) return;
+
+    data[date] = data[date] || [];
+    if(!data[date].includes(time)) data[date].push(time);
+
+    localStorage.setItem(storageKey, JSON.stringify(data));
+    render();
+  }
+
+  function render() {
+    list.innerHTML = '';
+    Object.keys(data).forEach(d => {
+      data[d].forEach(t => {
+        const li = document.createElement('li');
+        li.textContent = `${d} - ${t}`;
+        list.appendChild(li);
+      });
+    });
+  }
+
+  render();
+</script>
+
+</body>
+</html>

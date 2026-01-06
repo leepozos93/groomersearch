@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>GroomerSearch | Agenda tu cita</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script type="module" src="js/app.js"></script>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #111;
+      color: #fff;
+    }
+
+    header {
+      height: 100vh;
+      background: url("assets/img/hero.jpg") center/cover no-repeat;
+      position: relative;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,.6);
+    }
+
+    .hero {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .hero h1 { font-size: 36px; }
+    .hero p { color: #ccc; }
+
+    .btn {
+      background: #c9a24d;
+      color: #000;
+      padding: 14px 28px;
+      border-radius: 6px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+    }
+
+    section {
+      max-width: 600px;
+      margin: auto;
+      padding: 60px 20px;
+    }
+
+    .appointment {
+      background: #f5f5f5;
+      color: #000;
+      border-radius: 10px;
+      padding: 30px;
+    }
+
+    label { font-weight: 600; display: block; margin-bottom: 6px; }
+    select, input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    footer {
+      text-align: center;
+      color: #777;
+      padding: 30px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="hero">
+    <h1>GroomerSearch</h1>
+    <p>Agenda el cuidado perfecto para tu mascota</p>
+    <a href="#cita" class="btn">Agendar cita</a>
+  </div>
+</header>
+
+<section id="cita">
+  <div class="appointment">
+    <h2>Agenda tu cita</h2>
+    <p>Cliente nuevo</p><br>
+
+    <!-- PASO 1 -->
+    <form id="step1">
+      <label>Servicio</label>
+      <select required>
+        <option value="">Selecciona servicio</option>
+        <option>Baño básico</option>
+        <option>Baño y corte</option>
+        <option>Estética completa</option>
+      </select>
+
+      <label>Groomer</label>
+      <select required>
+        <option value="">Selecciona groomer</option>
+        <option>María</option>
+        <option>Carlos</option>
+        <option>Ana</option>
+      </select>
+
+      <button class="btn">Siguiente</button>
+    </form>
+
+    <!-- PASO 2 -->
+    <form id="step2" style="display:none">
+      <label>Fecha</label>
+      <input type="date" required>
+
+      <label>Horario</label>
+      <select required>
+        <option value="">Selecciona horario</option>
+        <option>10:00 AM</option>
+        <option>11:00 AM</option>
+        <option>12:00 PM</option>
+        <option>1:00 PM</option>
+        <option>3:00 PM</option>
+        <option>4:00 PM</option>
+      </select>
+
+      <button class="btn">Confirmar por WhatsApp</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  © 2026 GroomerSearch
+</footer>
+
+<script>
+  const step1 = document.getElementById('step1');
+  const step2 = document.getElementById('step2');
+  const dateInput = step2.querySelector('input');
+  const timeSelect = step2.querySelector('select');
+
+  const bookedSlots = {
+    '2026-07-17': ['10:00 AM', '12:00 PM'],
+    '2026-07-18': ['11:00 AM']
+  };
+
+  step1.addEventListener('submit', e => {
+    e.preventDefault();
+    step1.style.display = 'none';
+    step2.style.display = 'block';
+  });
+
+  dateInput.addEventListener('change', () => {
+    const booked = bookedSlots[dateInput.value] || [];
+    [...timeSelect.options].forEach(opt => {
+      if(opt.value) opt.disabled = booked.includes(opt.text);
+    });
+  });
+
+  step2.addEventListener('submit', e => {
+    e.preventDefault();
+    const msg = encodeURIComponent(
+      `Hola, quiero agendar una cita en GroomerSearch el ${dateInput.value} a las ${timeSelect.value}`
+    );
+    window.open(`https://wa.me/5210000000000?text=${msg}`, '_blank');
+  });
+</script>
+
+</body>
+</html>
